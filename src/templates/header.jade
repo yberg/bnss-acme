@@ -1,0 +1,19 @@
+header
+  .wrapper
+    a#logo(href="") ACME
+    nav
+      ul
+        li
+          a(href="") Home
+        li
+          a(href="/ownCloud") ownCloud
+      ul.pull-right
+        li
+          a#sign-in Sign in
+      #login-box
+        form(action="#" method="get")
+          h5 Sign in with your ACME employee account
+          input(type="text" name="username" placeholder="Username" autocomplete="off")
+          input(type="password" name="password" placeholder="•••••" autocomplete="off")
+          a(href="#") I forgot my password
+          button.pull-right(type="submit") Sign in
