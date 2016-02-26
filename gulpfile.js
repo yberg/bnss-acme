@@ -7,7 +7,7 @@ var gulp = require('gulp'),
   browserSync = require('browser-sync'),
   gulpif = require('gulp-if');
 
-var env = process.env.NODE_ENV || 'production';
+var env = process.env.NODE_ENV || 'development';
 var outputDir = 'builds/development';
 
 function printError(error) {

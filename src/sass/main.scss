@@ -21,7 +21,6 @@ a {
   cursor: pointer;
   &:hover {
     color: $link-hover;
-    text-decoration: underline;
   }
 }
 
@@ -34,7 +33,7 @@ h5 { font-size: 14px; font-weight: 400; margin-bottom: 15px; }
 
 .container {
   padding-top: 0px;
-  min-width: 1170px;
+  min-width: 960px;
 }
 
 .wrapper {
@@ -57,18 +56,21 @@ header {
   height: 50px;
   background: rgba(0,0,0,.2);
   box-shadow: 0 0 4px rgba(0,0,0,.6);
+  &.solid {
+    background: linear-gradient(90deg, $bg-dark 20%, $bg-light 60%);
+  }
 }
 
 #logo {
   float: left;
   display: inline-block;
-  width: 100px;
   line-height: 50px;
-  font-size: 32px;
-  text-align: center;
+  font-size: 30px;
   color: $light;
   font-weight: 300;
-  text-decoration: none;
+  &:hover {
+    text-shadow: 0 0 20px black;
+  }
 }
 
 nav {
@@ -130,6 +132,9 @@ nav {
     font-size: 12px;
     display: inline-block;
     margin-top: 10px;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -147,7 +152,7 @@ input {
   padding: 7px 10px;
   margin-bottom: 5px;
   font-size: 14px;
-  border-radius: 4px;
+  border-radius: 3px;
   border: none;
   background: white;
   border: 1px solid $border-default;
@@ -168,7 +173,7 @@ button {
   height: 30px;
   background: $button-default;
   border: 1px solid $border-default;
-  border-radius: 4px;
+  border-radius: 3px;
   color: $dark;
   cursor: pointer;
   outline: none;
@@ -188,7 +193,7 @@ button {
   height: 502px;
   background-position: center top;
   background-repeat: no-repeat;
-  background-image: url("../images/acme.jpg"), linear-gradient(-90deg, $bg-light 50%, $bg-dark 50%);
+  background-image: url("../images/acme.jpg"), linear-gradient(90deg, $bg-dark 50%, $bg-light 50%);
 }
 
 .content {
@@ -229,6 +234,11 @@ h2.icon {
     display: inline-block;
     margin-right: 10px;
     content: '';
+    -webkit-filter: drop-shadow(0 1px 1px rgba(black,.2));
+    -moz-filter: drop-shadow(0 1px 1px rgba(black,.2));
+    -ms-filter: drop-shadow(0 1px 1px rgba(black,.2));
+    -o-filter: drop-shadow(0 1px 1px rgba(black,.2));
+    filter: drop-shadow(0 1px 1px rgba(black,.2));
   }
   &.openvpn::before {
     background-image: url("../images/openvpn.png");

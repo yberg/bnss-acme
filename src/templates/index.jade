@@ -26,3 +26,9 @@ html
       $('form > a').attr('tabindex', 2);
       $('input').first().focus();
     });
+    $(window).scroll(function(){
+      if($(window).scrollTop() > 452)
+        $("header").addClass('solid');
+      else
+        $("header").removeClass('solid');
+    });
