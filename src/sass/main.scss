@@ -62,20 +62,26 @@ header {
 }
 
 #logo {
-  float: left;
   display: inline-block;
-  line-height: 50px;
-  font-size: 30px;
-  color: $light;
-  font-weight: 300;
-  &:hover {
-    text-shadow: 0 0 20px black;
+  float: left;
+  img {
+    display: block;
+    float: left;
+    height: 40px;
+    margin-top: 5px;
+  }
+  img:hover {
+    -webkit-filter: drop-shadow(0 1px 5px rgba(black,.5));
+    -moz-filter: drop-shadow(0 1px 5px rgba(black,.5));
+    -ms-filter: drop-shadow(0 1px 5px rgba(black,.5));
+    -o-filter: drop-shadow(0 1px 5px rgba(black,.5));
+    filter: drop-shadow(0 1px 5px rgba(black,.5));
   }
 }
 
 nav {
   position: relative;
-  width: calc(100% - 120px);
+  width: calc(100% - 155px);
   margin-left: 20px;
   display: inline-block;
   ul {
@@ -84,7 +90,6 @@ nav {
     li {
       display: inline-block;
       line-height: 50px;
-      font-size: 16px;
       margin: 0;
       a {
         display: block;
@@ -92,12 +97,18 @@ nav {
         height: 50px;
         line-height: 50px;
         color: $link-light;
+        font-size: 16px;
         font-weight: 300;
         text-decoration: none !important;
+        transition: all .2s;
         &:hover,
         &.active {
           color: white;
           text-shadow: 0 0 20px black;
+        }
+        &:hover {
+          background: rgba(0,0,0,.1);
+          transition: none;
         }
       }
     }

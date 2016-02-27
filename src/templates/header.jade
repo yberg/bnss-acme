@@ -1,10 +1,11 @@
 header
   .wrapper
-    a#logo(href="") ACME
+    a#logo(href="")
+      img(src="images/acme.png")
     nav
       ul
         li
-          a(href="") Home
+          a.active(href="") Home
         li
           a(href="/ownCloud") ownCloud
       ul.pull-right
@@ -23,6 +24,7 @@ header
         $('#login-box').animate({marginTop: '3px', opacity: 0, display: 'none'}, 150);
         $('input, button').attr('tabindex', -1);
         $('form > a').attr('tabindex', -1);
+        $('#sign-in').removeClass('active');
       }
     });
     $('#sign-in').click(function(e) {
@@ -31,6 +33,7 @@ header
       $('input, button').attr('tabindex', 1);
       $('form > a').attr('tabindex', 2);
       $('input').first().focus();
+      $('#sign-in').addClass('active');
     });
     $(window).scroll(function(){
       if($(window).scrollTop() > 452)
