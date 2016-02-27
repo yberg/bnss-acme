@@ -11,9 +11,30 @@ header
         li
           a#sign-in Sign in
       #login-box
-        form(action="#" method="get")
+        form(action="#")
           h5 Sign in with your ACME employee account
           input(type="text" name="username" placeholder="Username" autocomplete="off")
           input(type="password" name="password" placeholder="•••••" autocomplete="off")
           a(href="#") I forgot my password
           button.pull-right(type="submit") Sign in
+  script.
+    $(document).on('click', function(e) {
+      if (!$(e.target).closest('#login-box').length && $(e.target)[0].id !== 'sign-in') {
+        $('#login-box').animate({marginTop: '3px', opacity: 0, display: 'none'}, 150);
+        $('input, button').attr('tabindex', -1);
+        $('form > a').attr('tabindex', -1);
+      }
+    });
+    $('#sign-in').click(function(e) {
+      $('#login-box').show();
+      $('#login-box').animate({marginTop: '8px', opacity: 1}, 150);
+      $('input, button').attr('tabindex', 1);
+      $('form > a').attr('tabindex', 2);
+      $('input').first().focus();
+    });
+    $(window).scroll(function(){
+      if($(window).scrollTop() > 452)
+        $("header").addClass('solid');
+      else
+        $("header").removeClass('solid');
+    });
