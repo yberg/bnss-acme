@@ -12,7 +12,8 @@ header
         li
           a#sign-in Sign in
       #login-box
-        form(action="#")
+        form(action="")
+          h5.error
           h5 Sign in with your ACME employee account
           input(type="text" name="username" placeholder="Username" autocomplete="off")
           input(type="password" name="password" placeholder="•••••" autocomplete="off")
@@ -41,3 +42,7 @@ header
       else
         $("header").removeClass('solid');
     });
+    if (location.search.substring(1) === 'login-failed') {
+      $('#login-box h5.error').html("Invalid credentials. Try again.");
+      $('#sign-in').click();
+    }
