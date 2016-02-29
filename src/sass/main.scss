@@ -246,7 +246,7 @@ button {
   position: relative;
   &::before {
     position: absolute;
-    top: -14px;
+    top: -13px;
     left: -60px;
     background-size: 50px 50px;
     width: 50px;
@@ -274,6 +274,9 @@ button {
   }
   &.https::before {
     background-image: url("../images/https.png");
+  }
+  &.twofactor::before {
+    background-image: url("../images/twofactor.png");
   }
 }
 
