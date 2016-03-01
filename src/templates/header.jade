@@ -10,9 +10,9 @@ header
           a(href="/owncloud") ownCloud
       ul.pull-right
         li
-          a#sign-in Sign in
+          a#sign-in <!--<?php if (isset($_SESSION('name')) echo "Welcome ".$_SESSION('name'); else echo "-->Sign in<!--"; ?>-->
       #login-box
-        form(action="login.php")
+        form(action="login.php", method="POST")
           h5.error
           h5 Sign in with your ACME employee account
           input(type="text" name="username" placeholder="Username" autocomplete="off")
@@ -45,4 +45,11 @@ header
     if (location.search.substring(1) === 'login-failed') {
       $('#login-box h5.error').html("Invalid credentials. Try again.");
       $('#sign-in').click();
+    }
+    if (1==2/*<?php echo (int)isset($_SESSION['cn']); ?>*/) {
+      $('form').attr('action', "logout.php");
+      $('form h5.error, form input, form a').remove();
+      $('form h5').html("Signed in as " /*+ <?php echo $_SESSION['full_name']." (".$_SESSION['cn']).")"; ?>*/);
+      $('form button').html("Sign out").removeClass('pull-right');
+      $('#login-box').css({width: 'auto'});
     }
