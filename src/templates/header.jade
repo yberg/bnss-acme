@@ -1,11 +1,11 @@
 header
   .wrapper
-    a#logo(href="")
+    a#logo(href="/")
       img(src="images/acme.png")
     nav
       ul
         li
-          a.active(href="") Home
+          a.active(href="/") Home
         li
           a(href="/owncloud") ownCloud
       ul.pull-right
@@ -21,7 +21,7 @@ header
           button.pull-right(type="submit") Sign in
   script.
     $(document).on('click', function(e) {
-      if (!$(e.target).closest('#login-box').length && $(e.target)[0].id !== 'sign-in') {
+      if (!$(e.target).closest('#login-box').length && $(e.target)[0].id !== 'sign-in' && $(e.target)[0].innerHTML !== 'Sign in') {
         $('#login-box').animate({marginTop: '3px', opacity: 0, display: 'none'}, 150);
         $('input, button').attr('tabindex', -1);
         $('form > a').attr('tabindex', -1);

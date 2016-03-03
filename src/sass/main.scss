@@ -21,6 +21,7 @@ a {
   cursor: pointer;
   &:hover {
     color: $link-hover;
+    text-decoration: underline;
   }
 }
 
@@ -100,6 +101,8 @@ nav {
         padding: 0 10px;
         height: 50px;
         line-height: 50px;
+        letter-spacing: 0.5px;
+        text-align: center;
         color: $link-light;
         font-size: 16px;
         font-weight: 300;
@@ -148,9 +151,6 @@ nav {
     font-size: 12px;
     display: inline-block;
     margin-top: 10px;
-    &:hover {
-      text-decoration: underline;
-    }
   }
 }
 
@@ -282,12 +282,39 @@ footer {
   width: 100%;
   margin-bottom: 20px;
   font-size: 14px;
-  text-align: center;
   .wrapper {
+    position: relative;
     padding-top: 20px;
     border-top: 1px solid $border-default;
   }
-  ul li {
-    display: block;
+  ul {
+    &.center {
+      position: absolute;
+      left: calc(50% - 12px);
+    }
+    li {
+      display: inline-block;
+      margin-left: 15px;
+      color: $grey;
+      &:first-child {
+        margin-left: 0;
+      }
+      img {
+        margin-top: -5px;
+        height: 30px;
+        -webkit-filter: grayscale(100%);
+        -moz-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+        -o-filter: grayscale(100%);
+        filter: grayscale(100%);
+        &:hover {
+          -webkit-filter: drop-shadow(0 1px 1px rgba(black,.2));
+          -moz-filter: drop-shadow(0 1px 1px rgba(black,.2));
+          -ms-filter: drop-shadow(0 1px 1px rgba(black,.2));
+          -o-filter: drop-shadow(0 1px 1px rgba(black,.2));
+          filter: drop-shadow(0 1px 1px rgba(black,.2));
+        }
+      }
+    }
   }
 }
