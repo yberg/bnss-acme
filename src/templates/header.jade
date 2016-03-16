@@ -10,9 +10,9 @@ header
           a(href="/owncloud") ownCloud
       ul.pull-right
         li
-          a#sign-in <!--<?php if (isset($_SESSION('name')) echo "Welcome ".$_SESSION('name'); else echo "-->Sign in<!--"; ?>-->
+          a#sign-in Sign in
       #login-box
-        form(action="login.php", method="POST")
+        form(onSubmit="return login();", method="POST")
           h5.error
           h5 Sign in with your ACME employee account
           input(type="text" name="username" placeholder="Username" autocomplete="off")
@@ -20,8 +20,17 @@ header
           a(href="#") I forgot my password
           button.pull-right(type="submit") Sign in
   script.
+    (function() {
+      $.ajax({
+        url: "check.php",
+        success: function(response) {
+          if (response.split(",")[0] === 'ok') 
+            loggedIn(response.split(",")[1], response.split(",")[2]);
+        }
+      })
+    })();
     $(document).on('click', function(e) {
-      if (!$(e.target).closest('#login-box').length && $(e.target)[0].id !== 'sign-in' && $(e.target)[0].innerHTML !== 'Sign in') {
+      if (!$(e.target).closest('#login-box').length && $(e.target)[0].id !== 'sign-in' && $(e.target)[0].id !== 'sign-in-link' && $(e.target)[0].innerHTML !== 'Sign in') {
         $('#login-box').animate({marginTop: '3px', opacity: 0, display: 'none'}, 150);
         $('input, button').attr('tabindex', -1);
         $('form > a').attr('tabindex', -1);
@@ -42,14 +51,47 @@ header
       else
         $("header").removeClass('solid');
     });
-    if (location.search.substring(1) === 'login-failed') {
-      $('#login-box h5.error').html("Invalid credentials. Try again.");
-      $('#sign-in').click();
+    function login() {
+      $.ajax({
+        url: "login.php",
+        type: "post",
+        data: {
+          username: $('input[name=username').val(),
+          password: $('input[name=password').val()
+        },
+        success: function(response) {
+          console.log("response login: " + response);
+          if (response.split(",")[0] === 'ok') {
+            loggedIn(response.split(",")[1], response.split(",")[2]);
+            window.location.replace("/");
+          }
+          else if (response === 'error') {
+            $('#login-box h5.error').html("Invalid credentials. Try again.");
+            $('#sign-in').click();
+          }
+          else {
+            $('#login-box h5.error').html("Unknown error. Try again later.");
+            $('#sign-in').click();
+          }
+          $('input[name=password').val("").focus();
+        }
+      });
+      return false;
     }
-    if (1==2/*<?php echo (int)isset($_SESSION['cn']); ?>*/) {
-      $('form').attr('action', "logout.php");
+    function logout() {
+      $.ajax({
+        url: "logout.php",
+        success: function() {
+          window.location.replace("/");
+        }
+      });
+    }
+    function loggedIn(full_name, cn) {
+      $('#sign-in').html(full_name);
+      $('#sign-in-link').html(full_name);
+      $('#login-box').css({width: 'auto', display: 'none'});
+      $('form').attr('onSubmit', "return logout();");
       $('form h5.error, form input, form a').remove();
-      $('form h5').html("Signed in as " /*+ <?php echo $_SESSION['full_name']." (".$_SESSION['cn']).")"; ?>*/);
+      $('form h5').html("Signed in as " + full_name + " (<i>" + cn + "</i>)");
       $('form button').html("Sign out").removeClass('pull-right');
-      $('#login-box').css({width: 'auto'});
     }
