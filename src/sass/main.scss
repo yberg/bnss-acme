@@ -72,7 +72,7 @@ header {
   img {
     display: block;
     float: left;
-    height: 40px;
+    height: 42px;
     margin-top: 5px;
   }
   img:hover {
@@ -86,7 +86,7 @@ header {
 
 nav {
   position: relative;
-  width: calc(100% - 155px);
+  width: calc(100% - 60px);
   margin-left: 20px;
   display: inline-block;
   ul {
@@ -276,6 +276,12 @@ button {
   &.twofactor::before {
     background-image: url("../images/twofactor.png");
   }
+  &.openldap::before {
+    background-image: url("../images/openldap.png");
+  }
+  &.linotp::before {
+    background-image: url("../images/linotp.png");
+  }
 }
 
 footer {
@@ -300,8 +306,8 @@ footer {
         margin-left: 0;
       }
       img {
-        margin-top: -5px;
-        height: 30px;
+        margin-top: -10px;
+        height: 40px;
         -webkit-filter: grayscale(100%);
         -moz-filter: grayscale(100%);
         -ms-filter: grayscale(100%);

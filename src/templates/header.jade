@@ -1,7 +1,7 @@
 header
   .wrapper
     a#logo(href="/")
-      img(src="images/acme.png")
+      img(src="images/acme-logo.png")
     nav
       ul
         li
@@ -24,7 +24,7 @@ header
       $.ajax({
         url: "check.php",
         success: function(response) {
-          if (response.split(",")[0] === 'ok') 
+          if (response.split(",")[0] === 'ok')
             loggedIn(response.split(",")[1], response.split(",")[2]);
         }
       })
